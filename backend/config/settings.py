@@ -8,8 +8,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #.env
 #SECRET_KEY='django-insecure-9gx_mhev=6g^-gc!^s1c3kvgt&^-*npu90_juos@xfgvivd^cd'
 #DEBUG=True
+
 SECRET_KEY=os.getenv('SECRET_KEY')
 DEBUG=os.getenv('DEBUG')
+
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -24,6 +26,8 @@ INSTALLED_APPS = [
     #add:
     "rest_framework",
     "corsheaders",
+    #apps
+    "apps.topic",
 ]
 
 MIDDLEWARE = [
@@ -76,9 +80,11 @@ DATABASES = {
 
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    )
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
 }
 
 # Password validation
