@@ -38,3 +38,9 @@ jobs:
       - name: RUN DRF
         run: |
           python manage.py test apps/topic
+      - name: print vars
+        run : | 
+          echo $vars.DB_HOST
+          echo $vars.DB_NAME
+          echo $vars.DB_USER
+          echo $vars.DB_PASS
