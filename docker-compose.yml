@@ -1,4 +1,3 @@
-version: '3.9'
 
 services:
     api: 
@@ -6,14 +5,10 @@ services:
             context: ./backend
         volumes:
             - ./backend:/backend
+        env_file:
+            - .env
         ports:
             - '8000:8000'
-        environment:
-            - DB_HOST=database
-            - DB_NAME=dbname
-            - DB_USER=dbuser
-            - DB_PASS=dbpass
-            - DB_PORT=5432
         command: >
             sh -c "python manage.py runserver 0.0.0.0:8000"
         depends_on:
@@ -23,10 +18,12 @@ services:
     
     database: 
         image: postgres:14.6-alpine
+        env_file:
+            - .env
         environment:
-            - POSTGRES_DB=dbname
-            - POSTGRES_USER=dbuser
-            - POSTGRES_PASSWORD=dbpass
+            - POSTGRES_DB=${DB_NAME}
+            - POSTGRES_USER=${DB_USER}
+            - POSTGRES_PASSWORD=${DB_PASS}
         ports:
             - '5432:5432'
         networks:
