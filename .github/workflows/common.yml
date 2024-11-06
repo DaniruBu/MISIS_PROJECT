@@ -15,14 +15,14 @@ jobs:
         DB_NAME: ${{ vars.DB_NAME }}
         DB_USER: ${{ vars.DB_USER }}
         DB_PASS: ${{ vars.DB_PASS }}
-        DB_PORT: ${{ vars.DB_PORT }}
+        DB_PORT: 5432
     services:
       postgres_main:
-        image: postgres:13
+        image: postgres
         env:
-          POSTGRES_DB: ${{ vars.DB_NAME }}
-          POSTGRES_USER: ${{ vars.DB_USER }}
-          POSTGRES_PASSWORD: ${{ vars.DB_PASS }}
+          POSTGRES_DB: ${{ env.DB_NAME }}
+          POSTGRES_USER: ${{ env.DB_USER }}
+          POSTGRES_PASSWORD: ${{ env.DB_PASS }}
         ports:
           - 5432:5432
     steps:
