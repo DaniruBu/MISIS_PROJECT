@@ -26,12 +26,6 @@ jobs:
         ports:
           - 5432:5432
     steps:
-      - name: print vars
-        run : | 
-          echo ${{ vars.DB_HOST }}
-          echo ${{ vars.DB_NAME }}
-          echo ${{ vars.DB_USER }}
-          echo ${{ vars.SECRET_KEY }}
       - uses: actions/checkout@v2
       - name: Set up Python 
         uses: actions/setup-python@v3
