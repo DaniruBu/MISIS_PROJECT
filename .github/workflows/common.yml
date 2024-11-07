@@ -27,7 +27,7 @@ jobs:
           - 5432:5432
     steps:
       - name: Set up Python 
-        run: env
+        run: echo $DB_HOST
       - uses: actions/checkout@v2
       - name: Set up Python 
         uses: actions/setup-python@v3
