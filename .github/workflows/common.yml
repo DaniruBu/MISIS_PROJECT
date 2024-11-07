@@ -1,7 +1,6 @@
 name: Django CI & Postgres Test
 
-on: 
-  workflow_dispatch:
+on: ['push']
 
 jobs:
   django_test:
