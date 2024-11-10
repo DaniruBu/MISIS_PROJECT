@@ -1,0 +1,6 @@
+[flake8]
+exclude =
+    */venv/*
+    */migrations/*
+max-line-length=85
+ignore = E203, E231, E501, W503, F403, E265, W293

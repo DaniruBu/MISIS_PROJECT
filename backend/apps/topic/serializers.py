@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Topic
 
+
 class TopicSerializer(serializers.ModelSerializer):
     title = serializers.CharField()
     description = serializers.CharField()
