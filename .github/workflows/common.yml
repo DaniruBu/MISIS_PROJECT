@@ -43,4 +43,5 @@ jobs:
           flake8 --config .flake8 ./backend
       - name: RUN DRF TEST
         run: |
-          python manage.py test ./backend/apps/topic
+          cd ./backend
+          python manage.py test apps/topic
