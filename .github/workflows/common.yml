@@ -1,9 +1,7 @@
 name: Django CI & Postgres Test
 on:
   push:
-    branches: [ "main", "dev" ]
   pull_request:
-    branches: [ "main", "dev" ]
 
 jobs:
   django_test:
