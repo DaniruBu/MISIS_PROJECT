@@ -9,8 +9,4 @@ class TopicSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Topic
-        fields = [
-            "title",
-            "description",
-            "time_created",
-        ]
+        fields = ["title", "description", "time_created"]
