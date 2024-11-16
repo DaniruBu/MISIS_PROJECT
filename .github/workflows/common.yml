@@ -46,13 +46,7 @@ jobs:
       - name: Start Redis
         uses: supercharge/redis-github-action@1.7.0
         with:
-          redis-version: 7
-      - name: Start Celery_worker
-        run: |
-          celery -A config worker --loglevel=info
-      - name: Start Celery_worker
-        run: |
-          celery -A config beat --loglevel=info       
+          redis-version: 7    
       - name: RUN DRF TEST
         run: |
           cd ./backend
