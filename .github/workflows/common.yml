@@ -10,12 +10,16 @@ jobs:
       run:
         working-directory: .
     env:
-        SECRET_KEY: ${{ vars.SECRET_KEY }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
         DEBUG: ${{ vars.DEBUG }}
         DB_HOST: ${{ vars.DB_HOST }}
         DB_NAME: ${{ vars.DB_NAME }}
         DB_USER: ${{ vars.DB_USER }}
         DB_PASS: ${{ vars.DB_PASS }}
+        EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+        EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
+        DEFAULT_FROM_EMAIL: ${{ secrets.DEFAULT_FROM_EMAIL }}
+        EMAIL_HOST: ${{ vars.EMAIL_HOST }}
         DB_PORT: 5432
     services:
       postgres_main:
@@ -39,6 +43,16 @@ jobs:
       - name: Linters 
         run: |
           flake8 --config .flake8 ./backend
+      - name: Start Redis
+        uses: supercharge/redis-github-action@1.7.0
+        with:
+          redis-version: 7
+      - name: Start Celery_worker
+        run: |
+          celery -A config worker --loglevel=info
+      - name: Start Celery_worker
+        run: |
+          celery -A config beat --loglevel=info       
       - name: RUN DRF TEST
         run: |
           cd ./backend
