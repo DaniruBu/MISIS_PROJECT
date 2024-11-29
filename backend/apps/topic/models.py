@@ -1,5 +1,5 @@
 from django.db import models
-from user.models import User
+from ..user.models import User
 
 
 class Category(models.Model):
@@ -16,7 +16,7 @@ class Topic(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=64, blank=True)
     description = models.TextField(max_length=128, blank=False)
-    type_topic = models.ForeignKey(Category, on_delete=models.SET_NULL)
+    type_topic = models.ForeignKey(Category, on_delete=models.CASCADE)
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
